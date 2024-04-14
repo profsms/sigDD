@@ -1,0 +1,13 @@
+Package: sigDD
+Type: R Package
+Title: Difference-in-Differences modelling with significance testing
+Version: 0.0.1.0
+RoxygenNote: 7.3.1
+Encoding: UTF-8
+Authors@R: 
+    person("Stanisław", "Halkiewicz", , "smsh@duck.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0000-7344-7522"))
+Imports: 
+    gt
+Suggests: 
+    gtsummary
