@@ -1,0 +1,10 @@
+
+
+library(sigDD)
+dane<-sigDD::bj_hgd
+DD_e(metric = dane$metric, time = dane$time, affected = dane$affected)
+
+dane$mult <- dane$affected*dane$time
+
+DD_lm <- lm(formula = 'metric ~ time + mult +affected', data=dane)
+summary(DD_lm)

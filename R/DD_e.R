@@ -12,7 +12,7 @@ DD_e <- function(metric, time, affected){
     stop("All input vectors must be of the same length.")
   }
   
-  DD_coefficient <- (mean(metric[!time & affected]) - mean(metric[time & affected]))-(mean(metric[!time & !affected]) - mean(metric[time & !affected]))
+  DD_coefficient <- (mean(metric[!time & !affected]) - mean(metric[time & !affected]))-(mean(metric[!time & affected]) - mean(metric[time & affected]))
   
   return(DD_coefficient)
 }
