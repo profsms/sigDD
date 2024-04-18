@@ -8,6 +8,7 @@ Authors@R:
     person("Stanisław", "Halkiewicz", , "smsh@duck.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0000-7344-7522"))
 Imports: 
+    dplyr,
     gt
 Suggests: 
     gtsummary
