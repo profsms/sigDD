@@ -28,7 +28,7 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trend_plot <- function(metric, time, affected,
+parallel_trends_plot <- function(metric, time, affected,
                                 dateX = median(time),
                                 is_date = FALSE,
                                 control_mod = 0, affected_mod = 0, 
