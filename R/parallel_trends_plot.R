@@ -1,6 +1,6 @@
 #' Parallel Trend Plot
 #'
-#' This function creates a parallel trend plot to visualize trends
+#' Create a parallel trend plot to visualize trends
 #' between groups over time.
 #'
 #' @inheritParams DD_e
@@ -82,17 +82,17 @@ parallel_trends_plot <- function(metric, time, affected,
     data$time <- as.numeric(data$time) / max(as.numeric(data$time))
   }
   
-  affected_colors <- c("red", "blue")
+  affected_colors <- c(control_series_color, affected_series_color)
   
   ggplot2::ggplot(data, aes(x = time, y = metric, color = factor(affected))) +
-    geom_point(size = 1) +
-    geom_line(aes(linetype = factor(affected)), linewidth = 0.7) +
-    geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +  # Add vertical line (optional)
-    labs(title = title,
+    ggplot2::geom_point(size = 1) +
+    ggplot2::geom_line(aes(linetype = factor(affected)), linewidth = 0.7) +
+    ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +  # Add vertical line (optional)
+    ggplot2::labs(title = title,
          x = xlabel,
          y = ylabel,
          color = legend_color_label) +
-    scale_color_manual(values = affected_colors) +
-    scale_linetype_manual(values = c("solid", "solid")) +
-    theme_bw()
+    ggplot2::scale_color_manual(values = affected_colors) +
+    ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
+    ggplot2::theme_bw()
 };
