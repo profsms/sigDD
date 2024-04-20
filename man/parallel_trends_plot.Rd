@@ -64,6 +64,6 @@ the time axis (scale to range 0-1).}
 A ggplot object representing the parallel trend plot.
 }
 \description{
-This function creates a parallel trend plot to visualize trends
+Create a parallel trend plot to visualize trends
 between groups over time.
 }
