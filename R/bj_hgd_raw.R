@@ -12,6 +12,6 @@
 #' 
 #' @keywords dataset
 #' 
-#' @format A DataFrame with three columns - 
+#' @format A DataFrame with three columns - 'Date', 'BJ' and 'HaagenDazs'.
 #' 
 #' @source \href{https://trends.google.com/trends/explore?date=2020-03-01%202020-09-01&geo=US&q=%2Fm%2F016_pl,%2Fm%2F02zy15&hl=pl}{Google Trends}
