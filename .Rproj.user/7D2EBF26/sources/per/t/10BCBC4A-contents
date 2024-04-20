@@ -31,14 +31,16 @@
 parallel_trends_plot <- function(metric, time, affected,
                                 dateX = median(time),
                                 is_date = FALSE,
-                                control_mod = 0, affected_mod = 0, 
-                                equalize = FALSE, unitize_time = FALSE,
+                                control_mod = 0,
+                                affected_mod = 0, 
+                                equalize = FALSE,
+                                unitize_time = FALSE,
                                 title = "Parallel Trend Plot",
                                 xlabel = "Time",
                                 ylabel = "Metric",
                                 control_series_color = "red",
                                 affected_series_color = "blue",
-                                legend_color_label = "Affected") {
+                                legend_color_label = "Affected"){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, time, affected))) {
@@ -95,4 +97,4 @@ parallel_trends_plot <- function(metric, time, affected,
     ggplot2::scale_color_manual(values = affected_colors) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
     ggplot2::theme_bw()
-};
+}
