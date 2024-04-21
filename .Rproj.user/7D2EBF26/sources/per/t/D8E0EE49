@@ -3,7 +3,7 @@
     "path": "~/Research reeeee/JSS/A library for Difference-in-difference estimation with significance testing/sigDD/R/table_to_DD.R",
     "project_path": "R/table_to_DD.R",
     "type": "r_source",
-    "hash": "1976403963",
+    "hash": "3770596255",
     "contents": "",
     "dirty": false,
     "created": 1713662763922.0,
@@ -16,11 +16,11 @@
         "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713662904,
+    "lastKnownWriteTime": 1713663088,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713662904182,
+    "last_content_update": 1713663088,
     "read_only": false,
     "read_only_alternatives": []
 }
