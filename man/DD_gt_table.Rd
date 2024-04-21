@@ -14,7 +14,7 @@ DD_gt_table(
   affected_group_name = "Experimental",
   control_group_name = "Control",
   time_header = "Time",
-  affected_hader = "Affected"
+  affected_header = "Affected"
 )
 }
 \arguments{

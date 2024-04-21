@@ -22,7 +22,7 @@ DD_gt_table<-function(metric,
                 affected_group_name="Experimental",
                 control_group_name="Control",
                 time_header = "Time",
-                affected_hader = "Affected"
+                affected_header = "Affected"
                 ){
   
   dd_matrix <- matrix(nrow = 3, ncol = 3)
@@ -58,13 +58,13 @@ DD_gt_table<-function(metric,
     dd_table |>
     gt::tab_row_group(
       label = time_header,
-      rows = everything()
+      rows = gt::everything()
     )
   
   dd_table <- 
     dd_table |>
     gt::tab_spanner(
-      label = affected_hader,
+      label = affected_header,
       columns = c(Wysoka, Niska)
     )
   
@@ -72,7 +72,7 @@ DD_gt_table<-function(metric,
   dd_table <- 
     dd_table |>
     gt::grand_summary_rows(
-      columns = everything(),
+      columns = gt::everything(),
       fns = list(
         "Difference" = ~ .[1] - .[2]
       )
