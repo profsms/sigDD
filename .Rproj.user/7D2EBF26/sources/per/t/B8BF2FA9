@@ -3,7 +3,7 @@
     "path": "~/Research reeeee/JSS/A library for Difference-in-difference estimation with significance testing/sigDD/R/parallel_trends_plot.R",
     "project_path": "R/parallel_trends_plot.R",
     "type": "r_source",
-    "hash": "3349828348",
+    "hash": "1933342297",
     "contents": "",
     "dirty": false,
     "created": 1713658861978.0,
@@ -13,14 +13,14 @@
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "92,0",
-        "scrollLine": "0"
+        "scrollLine": "60"
     },
     "folds": "",
-    "lastKnownWriteTime": 1713658846,
+    "lastKnownWriteTime": 1713659967,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1713658846,
+    "last_content_update": 1713659967,
     "read_only": false,
     "read_only_alternatives": []
 }
