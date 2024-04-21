@@ -18,7 +18,6 @@ DD_sig <- function(metric, DDe, iterations=15000, alpha=0.1, generate_plot=TRUE,
   
   DD_ecdf<-ecdf(test_data)
   pval <- round(2*DD_ecdf(-abs(DDe)), digits=6)
-  
   print(sig_message)
   print(paste("p-value: ", pval))
   return(pval)

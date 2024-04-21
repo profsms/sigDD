@@ -28,7 +28,7 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, time, affected,dateX = median(time),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected"){
+parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected"){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, time, affected))) {
@@ -36,7 +36,7 @@ parallel_trends_plot <- function(metric, time, affected,dateX = median(time),is_
   }
   
   if(!is.numeric(time) && is_date[1] == FALSE){
-    stop("time must be a numeric vector, unless is_date is set to (TRUE, starting date)")
+    stop("time must be a numeric vector, unless is_date is set to TRUE")
   }
   
   if (!is.numeric(control_mod) | !is.numeric(affected_mod)) {

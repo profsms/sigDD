@@ -4,7 +4,14 @@
 \alias{test_distr}
 \title{Generate the test distribution on given metric}
 \usage{
-test_distr(metric, iterations = 15000, generate_plot = TRUE)
+test_distr(
+  metric,
+  iterations = 15000,
+  generate_plot = TRUE,
+  title = "",
+  xlabel = "",
+  ylabel = "Density"
+)
 }
 \arguments{
 \item{metric}{Vector containing metric values of each observation}
@@ -12,6 +19,12 @@ test_distr(metric, iterations = 15000, generate_plot = TRUE)
 \item{iterations}{Number of iterations in generating the test distribution - the more, the better, but it is recommended to do at least 15'000 iterations, by default set to 15'000}
 
 \item{generate_plot}{Boolean variable - set to TRUE if you want to show the density plot of test distribution, FALSE if you do not want to generate the plot; by default set to TRUE}
+
+\item{title}{Title for the generated plot, empty by default}
+
+\item{xlabel}{Label for the x-axis of the generated plot, empty by default}
+
+\item{ylabel}{Label for the y-axis of the generated plot, 'Density' by default}
 }
 \value{
 Test distribution built on given metric as a numeric vector

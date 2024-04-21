@@ -8,7 +8,7 @@ parallel_trends_plot(
   metric,
   time,
   affected,
-  dateX = median(time),
+  dateX = ceiling(median(time)),
   is_date = FALSE,
   control_mod = 0,
   affected_mod = 0,
