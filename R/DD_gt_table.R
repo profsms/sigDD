@@ -40,7 +40,7 @@ DD_gt_table<-function(metric,
   dd_matrix[, 3] <- dd_matrix[, 1] - dd_matrix[, 2]
   dd_matrix[3, ] <- dd_matrix[1, ] - dd_matrix[2, ]
   
-  ddtibble1 <- as_tibble(dd_matrix[1:2,])
+  ddtibble1 <- tibble::as_tibble(dd_matrix[1:2,])
   
   ddtibble1["RowNames"] = c(post_event_name,
                             pre_event_name)

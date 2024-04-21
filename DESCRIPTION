@@ -10,7 +10,8 @@ Authors@R:
 Imports: 
     dplyr,
     ggplot2,
-    gt
+    gt,
+    tibble
 Suggests: 
     gtsummary
 Depends: 
