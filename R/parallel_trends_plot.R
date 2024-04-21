@@ -86,7 +86,8 @@ parallel_trends_plot <- function(metric, time, affected,
   
   affected_colors <- c(control_series_color, affected_series_color)
   
-  ggplot2::ggplot(data, aes(x = time, y = metric, color = factor(affected))) +
+  par_trend_plot<-
+    ggplot2::ggplot(data, aes(x = time, y = metric, color = factor(affected))) +
     ggplot2::geom_point(size = 1) +
     ggplot2::geom_line(aes(linetype = factor(affected)), linewidth = 0.7) +
     ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +  # Add vertical line (optional)
@@ -97,8 +98,8 @@ parallel_trends_plot <- function(metric, time, affected,
     ggplot2::scale_color_manual(values = affected_colors) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
     ggplot2::theme_bw()
-<<<<<<< HEAD
+  
+  par_trend_plot
+  
+  return(par_trend_plot)
 }
-=======
-};
->>>>>>> e727b9c79b6462da84d77a723200855108361139
