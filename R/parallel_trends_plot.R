@@ -74,15 +74,15 @@ parallel_trends_plot <- function(metric, time, affected,dateX = median(time),is_
   
   affected_colors <- c(control_series_color, affected_series_color)
   
-  par_trend_plot<- ggplot2::ggplot(data, ggplot2::aes(x = time, y = metric, color = factor(affected))) +
+  par_trend_plot <- ggplot2::ggplot(data, ggplot2::aes(x = time, y = metric, color = factor(affected))) +
     ggplot2::geom_point(size = 1) +
     ggplot2::geom_line(ggplot2::aes(linetype = factor(affected)), linewidth = 0.7) +
     ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +
     ggplot2::labs(title = title,
-         x = xlabel,
-         y = ylabel,
-         color = legend_color_label) +
-    ggplot2::scale_color_manual(values = affected_colors, labels="") +
+                  x = xlabel,
+                  y = ylabel,
+                  color = legend_color_label) +
+    ggplot2::scale_color_manual(values = affected_colors) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
     ggplot2::guides(linetype=FALSE) +
     ggplot2::theme_bw()
