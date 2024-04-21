@@ -82,7 +82,7 @@ parallel_trends_plot <- function(metric, time, affected,dateX = median(time),is_
                   x = xlabel,
                   y = ylabel,
                   color = legend_color_label) +
-    ggplot2::scale_color_manual(values = affected_colors) +
+    ggplot2::scale_color_manual(values = affected_colors, labels = c("0", "1")) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
     ggplot2::guides(linetype=FALSE) +
     ggplot2::theme_bw()
