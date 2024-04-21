@@ -29,7 +29,7 @@ table_to_DD <- function(period, seriesA, seriesB, dateX=median(1:floor((length(p
   df <- data.frame(period = 1:floor((length(period))), seriesA = seriesA, seriesB = seriesB)
   
   # Sort by date
-  df <- df %>% dplyr::arrange(date)
+  df <- df %>% dplyr::arrange(period)
   # Get the number of rows
   n <- nrow(df)
   
