@@ -12,7 +12,7 @@
 #'@param affected_header Header name for the variable describing whether an observation belongs to control group or affected group, set to 'Affected' as default
 #'@return 'gt' object containing publication-ready visualization of DD calculations using differences table
 #'@export
-DD_table<-function(metric,
+DD_gt_table<-function(metric,
                 time,
                 affected,
                 post_event_name = "post-event",

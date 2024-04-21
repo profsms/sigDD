@@ -2,8 +2,8 @@
 
 export(DD_bounds)
 export(DD_e)
+export(DD_gt_table)
 export(DD_sig)
-export(DD_table)
 export(ktd_DD_bounds)
 export(ktd_DD_sig)
 export(parallel_trends_plot)
