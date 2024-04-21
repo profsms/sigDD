@@ -20,7 +20,7 @@
 #'
 #' @export
 table_to_DD <- function(period, seriesA, seriesB, dateX=median(1:floor((length(period))))) {
-  library(dplyr)
+  
   # Check data types
   if (!is.numeric(seriesA)) stop("Argument 'seriesA' must be numeric")
   if (!is.numeric(seriesB)) stop("Argument 'seriesB' must be numeric")
@@ -28,8 +28,6 @@ table_to_DD <- function(period, seriesA, seriesB, dateX=median(1:floor((length(p
   # Combine data into a data frame
   df <- data.frame(period = 1:floor((length(period))), seriesA = seriesA, seriesB = seriesB)
   
-  # Sort by date
-  df <- df %>% dplyr::arrange(period)
   # Get the number of rows
   n <- nrow(df)
   
