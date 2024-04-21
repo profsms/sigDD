@@ -8,6 +8,7 @@ DD_gt_table(
   metric,
   time,
   affected,
+  table_title = "DD Estimation",
   post_event_name = "post-event",
   pre_event_name = "pre-event",
   affected_group_name = "Experimental",
@@ -22,6 +23,8 @@ DD_gt_table(
 \item{time}{Boolean vector indicating whether an observation was taken pre-event or post-event - FALSE (or 0) if the observation was taken before the event took place, TRUE (or 1) if the observation was taken after the event took place.}
 
 \item{affected}{Boolean vector indicating whether an observation was to be affected by the event - FALSE (or 0) for control group, TRUE (or 1) for experimental (affected) group.}
+
+\item{table_title}{The title for the whole table, 'DD Estimation' by default}
 
 \item{post_event_name}{Name for post-event subgroup in the differences table, set to 'post-event' by default}
 

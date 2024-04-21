@@ -1,6 +1,7 @@
 #'Generate the differences table as a 'gt' object
 #'
 #'Generate the visualization of calculation process using differences table with customized headings and group names
+#'@param table_title The title for the whole table, 'DD Estimation' by default
 #'@param metric Vector containing metric values of each observation
 #'@param time Boolean vector indicating whether an observation was taken pre-event or post-event - FALSE (or 0) if the observation was taken before the event took place, TRUE (or 1) if the observation was taken after the event took place.
 #'@param affected Boolean vector indicating whether an observation was to be affected by the event - FALSE (or 0) for control group, TRUE (or 1) for experimental (affected) group.
@@ -15,6 +16,7 @@
 DD_gt_table<-function(metric,
                 time,
                 affected,
+                table_title = "DD Estimation",
                 post_event_name = "post-event",
                 pre_event_name="pre-event",
                 affected_group_name="Experimental",
@@ -49,7 +51,7 @@ DD_gt_table<-function(metric,
   dd_table <- 
     dd_table |>
     gt::tab_header(
-      title = md("**DD Estimation**")
+      title = gt::md(paste("**",table_title,"**"))
     )
   
   dd_table <-
