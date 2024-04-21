@@ -21,6 +21,8 @@
 #' @param title The main title of the plot. Defaults to "Parallel Trend Plot".
 #' @param xlabel The label for the x-axis. Defaults to "Time".
 #' @param ylabel The label for the y-axis. Defaults to "Metric".
+#' @param control_name The name for the control group, '0' by default
+#' @param affected_name The name for the affected group, '1' by default
 #' @param control_series_color The color for the control group line. Defaults to "red".
 #' @param affected_series_color The color for the affected group line. Defaults to "blue".
 #' @param legend_color_label The label for the color legend. Defaults to "Affected".
@@ -28,7 +30,7 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected"){
+parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '1', affected_name = '1'){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, time, affected))) {
@@ -82,9 +84,9 @@ parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(t
                   x = xlabel,
                   y = ylabel,
                   color = legend_color_label) +
-    ggplot2::scale_color_manual(values = affected_colors, labels = c("0", "1")) +
+    ggplot2::scale_color_manual(values = affected_colors, labels = c(control_name, affected_name)) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
-    ggplot2::guides(linetype=FALSE) +
+    ggplot2::guides(linetype="none") +
     ggplot2::theme_bw()
   
   par_trend_plot

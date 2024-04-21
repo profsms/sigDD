@@ -19,7 +19,9 @@ parallel_trends_plot(
   ylabel = "Metric",
   control_series_color = "red",
   affected_series_color = "blue",
-  legend_color_label = "Affected"
+  legend_color_label = "Affected",
+  control_name = "1",
+  affected_name = "1"
 )
 }
 \arguments{
@@ -59,6 +61,10 @@ the time axis (scale to range 0-1).}
 \item{affected_series_color}{The color for the affected group line. Defaults to "blue".}
 
 \item{legend_color_label}{The label for the color legend. Defaults to "Affected".}
+
+\item{control_name}{The name for the control group, '0' by default}
+
+\item{affected_name}{The name for the affected group, '1' by default}
 }
 \value{
 A ggplot object representing the parallel trend plot.
