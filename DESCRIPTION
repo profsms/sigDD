@@ -1,7 +1,7 @@
 Package: sigDD
 Type: R Package
 Title: Difference-in-Differences modelling with significance testing
-Version: 0.0.1.2
+Version: 0.0.1.3
 RoxygenNote: 7.3.1
 Encoding: UTF-8
 Authors@R: 
@@ -16,3 +16,4 @@ Suggests:
 Depends: 
     R (>= 2.10)
 LazyData: true
+License: MIT + file LICENSE
