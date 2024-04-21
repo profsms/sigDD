@@ -30,7 +30,7 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '1', affected_name = '1'){
+parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '0', affected_name = '1'){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, time, affected))) {

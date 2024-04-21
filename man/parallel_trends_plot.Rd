@@ -20,7 +20,7 @@ parallel_trends_plot(
   control_series_color = "red",
   affected_series_color = "blue",
   legend_color_label = "Affected",
-  control_name = "1",
+  control_name = "0",
   affected_name = "1"
 )
 }

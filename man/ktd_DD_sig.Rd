@@ -4,7 +4,13 @@
 \alias{ktd_DD_sig}
 \title{Determine whether the empirical DD coefficient is significant}
 \usage{
-ktd_DD_sig(test_data, DDe, alpha = 0.1, generate_plot = TRUE, print_bounds)
+ktd_DD_sig(
+  test_data,
+  DDe,
+  alpha = 0.1,
+  generate_plot = TRUE,
+  print_bounds = TRUE
+)
 }
 \arguments{
 \item{test_data}{Previously generated test distribution, can be generated using 'test_distr()' function}

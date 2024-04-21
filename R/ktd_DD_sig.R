@@ -4,7 +4,7 @@
 #'@inheritParams ktd_DD_bounds
 #'@param DDe The empirical value of DD coefficient, can be calculated by DDe() function
 #'@export
-ktd_DD_sig <- function(test_data, DDe, alpha = 0.1, generate_plot=TRUE, print_bounds){
+ktd_DD_sig <- function(test_data, DDe, alpha = 0.1, generate_plot=TRUE, print_bounds=TRUE){
   
   bounds <- ktd_DD_bounds(test_data = test_data, alpha=alpha, generate_plot=generate_plot, print_bounds=print_bounds)
   
