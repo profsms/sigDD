@@ -48,20 +48,20 @@ DD_table<-function(metric,
   dd_table <- gt::gt(ddtibble1, rowname_col = "RowNames")
   dd_table <- 
     dd_table |>
-    tab_header(
+    gt::tab_header(
       title = md("**DD Estimation**")
     )
   
   dd_table <-
     dd_table |>
-    tab_row_group(
+    gt::tab_row_group(
       label = time_header,
       rows = everything()
     )
   
   dd_table <- 
     dd_table |>
-    tab_spanner(
+    gt::tab_spanner(
       label = affected_hader,
       columns = c(Wysoka, Niska)
     )
@@ -69,7 +69,7 @@ DD_table<-function(metric,
   
   dd_table <- 
     dd_table |>
-    grand_summary_rows(
+    gt::grand_summary_rows(
       columns = everything(),
       fns = list(
         "Difference" = ~ .[1] - .[2]
