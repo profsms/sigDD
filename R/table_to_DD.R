@@ -11,7 +11,7 @@
 #' @param seriesB A numeric vector representing values for series B.
 #' @param dateX An optional numeric value representing the reference date 
 #' for splitting the data into "before" and "after" categories. Defaults 
-#' to the median of the `date` vector.
+#' to the median of the `period` vector.
 #'
 #' @return A data frame with three columns:
 #'   - metric: A combined vector containing values from both seriesA and seriesB.
@@ -26,7 +26,7 @@ table_to_DD <- function(period, seriesA, seriesB, dateX=median(1:floor((length(p
   if (!is.numeric(seriesB)) stop("Argument 'seriesB' must be numeric")
   
   # Combine data into a data frame
-  df <- data.frame(period = 1:floor((length(period))), seriesA = seriesA, seriesB = seriesB)
+  df <- data.frame(period = (1:floor((length(period)))), seriesA = seriesA, seriesB = seriesB)
   
   # Get the number of rows
   n <- nrow(df)

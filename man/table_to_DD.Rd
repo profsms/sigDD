@@ -22,7 +22,7 @@ consecutive periods}
 
 \item{dateX}{An optional numeric value representing the reference date 
 for splitting the data into "before" and "after" categories. Defaults 
-to the median of the `date` vector.}
+to the median of the `period` vector.}
 }
 \value{
 A data frame with three columns:
