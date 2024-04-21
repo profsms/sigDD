@@ -97,4 +97,8 @@ parallel_trends_plot <- function(metric, time, affected,
     ggplot2::scale_color_manual(values = affected_colors) +
     ggplot2::scale_linetype_manual(values = c("solid", "solid")) +
     ggplot2::theme_bw()
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> e727b9c79b6462da84d77a723200855108361139
