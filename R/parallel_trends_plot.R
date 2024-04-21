@@ -28,19 +28,7 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, time, affected,
-                                dateX = median(time),
-                                is_date = FALSE,
-                                control_mod = 0,
-                                affected_mod = 0, 
-                                equalize = FALSE,
-                                unitize_time = FALSE,
-                                title = "Parallel Trend Plot",
-                                xlabel = "Time",
-                                ylabel = "Metric",
-                                control_series_color = "red",
-                                affected_series_color = "blue",
-                                legend_color_label = "Affected"){
+parallel_trends_plot <- function(metric, time, affected,dateX = median(time),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected"){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, time, affected))) {
@@ -86,11 +74,10 @@ parallel_trends_plot <- function(metric, time, affected,
   
   affected_colors <- c(control_series_color, affected_series_color)
   
-  par_trend_plot<-
-    ggplot2::ggplot(data, ggplot2::aes(x = time, y = metric, color = factor(affected))) +
+  par_trend_plot<- ggplot2::ggplot(data, ggplot2::aes(x = time, y = metric, color = factor(affected))) +
     ggplot2::geom_point(size = 1) +
     ggplot2::geom_line(ggplot2::aes(linetype = factor(affected)), linewidth = 0.7) +
-    ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +  # Add vertical line (optional)
+    ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +
     ggplot2::labs(title = title,
          x = xlabel,
          y = ylabel,
