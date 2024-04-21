@@ -65,7 +65,7 @@ DD_gt_table<-function(metric,
     dd_table |>
     gt::tab_spanner(
       label = affected_header,
-      columns = c(Wysoka, Niska)
+      columns = c(affected_group_name, control_group_name)
     )
   
   
