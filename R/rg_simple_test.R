@@ -20,20 +20,25 @@
 #'   - p-value: The p-value associated with the t-statistic.
 #'
 #' @export
-rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,additional_variable_matrix=matrix(nrow=1,ncol=1)){
+rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,additional_variable_matrix=matrix(nrow=1,ncol=1), include_trend=FALSE){
   
   
   if(nrow(additional_variable_matrix)!=1 && nrow(additional_variable_matrix)!=length(metric)){
     stop("additional_variable_matrix must be either an empty (default) matrix with only 1 row, if there are no other independent variables to be included in the test, or a matrix number of rows equal to number of observation in metric vector")
   }
   
+  if(include_trend){
+    additional_variable_matrix<-as.data.frame(additional_variable_matrix)
+    additional_variable_matrix$trend <- period
+  }
+  
   pretrend <- (abs(time - 1))*affected
   posttrend <- time*affected
   notaffected <- abs(affected-1)
   if(nrow(additional_variable_matrix)==1){
-    data<-data.frame(metric,period,affected,notaffected,pretrend,posttrend)
+    data<-data.frame(metric,affected,notaffected,pretrend,posttrend)
   } else{
-    data<-data.frame(metric,period,affected,notaffected,pretrend,posttrend,as.data.frame(additional_variable_matrix))
+    data<-data.frame(metric,affected,notaffected,pretrend,posttrend,as.data.frame(additional_variable_matrix))
   }
   
   data$pretrend[period==dateX-1]<-0

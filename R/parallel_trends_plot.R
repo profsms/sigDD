@@ -4,7 +4,7 @@
 #' between groups over time.
 #'
 #' @inheritParams DD_e
-#'
+#' @param period A vector of dates (or a number sequence) representing the period (f.e. day) when the observation was taken
 #' @param dateX An optional numeric value representing the time point for
 #' the vertical line. Defaults to the median of `time`.
 #' @param is_date A logical value (TRUE/FALSE) indicating if `time` is a date
@@ -30,14 +30,14 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '0', affected_name = '1'){
+parallel_trends_plot <- function(metric, period, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_time = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '0', affected_name = '1'){
   
   # Check arguments
-  if (!is.data.frame(data.frame(metric, time, affected))) {
+  if (!is.data.frame(data.frame(metric, period, affected))) {
     stop("metric, time, and affected must be vectors of equal length")
   }
   
-  if(!is.numeric(time) && is_date[1] == FALSE){
+  if(!is.numeric(period) && is_date == FALSE){
     stop("time must be a numeric vector, unless is_date is set to TRUE")
   }
   
@@ -53,11 +53,11 @@ parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(t
     stop("unitize_time must be logical (TRUE/FALSE) for time unitization")
   }
   
-  if(is_date[1]==TRUE){
-    time <- 1:floor((length(time)/2))
+  if(is_date==TRUE){
+    period <- 1:floor((length(period)/2))
   }
   
-  data <- data.frame(metric, time, affected)
+  data <- data.frame(metric, period, affected)
   
   # Apply group modifications
   data$metric[affected == 1] <- data$metric[affected == 1] + affected_mod
@@ -70,13 +70,13 @@ parallel_trends_plot <- function(metric, time, affected,dateX = ceiling(median(t
     data$metric <- (data$metric - (affected_mean - control_mean) * data$affected)
   }
   
-  if (unitize_time) {
-    data$time <- as.numeric(data$time) / max(as.numeric(data$time))
+  if (unitize_period) {
+    data$period <- as.numeric(data$period) / max(as.numeric(data$period))
   }
   
   affected_colors <- c(control_series_color, affected_series_color)
   
-  par_trend_plot <- ggplot2::ggplot(data, ggplot2::aes(x = time, y = metric, color = factor(affected))) +
+  par_trend_plot <- ggplot2::ggplot(data, ggplot2::aes(x = period, y = metric, color = factor(affected))) +
     ggplot2::geom_point(size = 1) +
     ggplot2::geom_line(ggplot2::aes(linetype = factor(affected)), linewidth = 0.7) +
     ggplot2::geom_vline(xintercept = dateX, linetype = "dashed", color = "black", linewidth = 1) +

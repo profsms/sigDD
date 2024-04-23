@@ -11,7 +11,8 @@ rg_simple_test(
   time,
   affected,
   alpha = 0.1,
-  additional_variable_matrix = matrix(nrow = 1, ncol = 1)
+  additional_variable_matrix = matrix(nrow = 1, ncol = 1),
+  include_trend = FALSE
 )
 }
 \arguments{

@@ -6,7 +6,7 @@
 \usage{
 parallel_trends_plot(
   metric,
-  time,
+  period,
   affected,
   dateX = ceiling(median(time)),
   is_date = FALSE,
@@ -27,7 +27,7 @@ parallel_trends_plot(
 \arguments{
 \item{metric}{Vector containing metric values of each observation}
 
-\item{time}{Boolean vector indicating whether an observation was taken pre-event or post-event - FALSE (or 0) if the observation was taken before the event took place, TRUE (or 1) if the observation was taken after the event took place.}
+\item{period}{A vector of dates (or a number sequence) representing the period (f.e. day) when the observation was taken}
 
 \item{affected}{Boolean vector indicating whether an observation was to be affected by the event - FALSE (or 0) for control group, TRUE (or 1) for experimental (affected) group.}
 
