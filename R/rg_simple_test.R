@@ -28,17 +28,21 @@ rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,addition
   }
   
   if(include_trend){
-    additional_variable_matrix<-as.data.frame(additional_variable_matrix)
-    additional_variable_matrix$trend <- period
+    if(nrow(additional_variable_matrix)==1){
+      additional_variable_matrix<-data.frame(period)
+    }else{
+      additional_variable_matrix<-as.data.frame(additional_variable_matrix)
+      additional_variable_matrix$trend <- period    
+    }
   }
   
   pretrend <- (abs(time - 1))*affected
   posttrend <- time*affected
   notaffected <- abs(affected-1)
   if(nrow(additional_variable_matrix)==1){
-    data<-data.frame(metric,affected,notaffected,pretrend,posttrend)
+    data<-data.frame(metric,pretrend,posttrend)
   } else{
-    data<-data.frame(metric,affected,notaffected,pretrend,posttrend,as.data.frame(additional_variable_matrix))
+    data<-data.frame(metric,pretrend,posttrend,as.data.frame(additional_variable_matrix))
   }
   
   data$pretrend[period==dateX-1]<-0
