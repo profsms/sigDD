@@ -47,7 +47,7 @@ rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,addition
   
   data$pretrend[period==dateX-1]<-0
   data$posttrend[period==dateX-1]<-0
-  test_lm<-lm(formula='metric~ 0 + .',data=data)
+  test_lm<-lm(formula='metric~ .',data=data)
   
   ttest<-(summary(test_lm)$coefficients['pretrend','t value'])
   pvalue<-(summary(test_lm)$coefficients['pretrend','Pr(>|t|)'])
