@@ -10,22 +10,15 @@
 #' @inheritParams DD_e
 #' @param alpha A numeric value (between 0 and 1) representing the significance 
 #' level for the test. Defaults to 0.1.
-#' @param additional_variable_matrix An optional matrix (default is a 1x1 
-#' empty matrix) allowing for inclusion of additional independent variables 
-#' in the test model. The number of rows must either be 1 (empty matrix) or 
-#' equal to the length of the `metric` vector.
+#' @param include_trend A Boolean variable that specifies whether trend should be added to the procedure's ols model, dafaults to FALSE
 #'
 #' @return A data frame with two columns:
 #'   - t test: The t-statistic value from the linear model.
 #'   - p-value: The p-value associated with the t-statistic.
 #'
 #' @export
-rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,additional_variable_matrix=matrix(nrow=1,ncol=1), include_trend=FALSE){
+rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, include_trend=FALSE){
   
-  
-  if(nrow(additional_variable_matrix)!=1 && nrow(additional_variable_matrix)!=length(metric)){
-    stop("additional_variable_matrix must be either an empty (default) matrix with only 1 row, if there are no other independent variables to be included in the test, or a matrix number of rows equal to number of observation in metric vector")
-  }
   
   if(include_trend){
     if(nrow(additional_variable_matrix)==1){
@@ -35,19 +28,24 @@ rg_simple_test<- function(period,dateX,metric,time,affected,alpha = 0.1,addition
       additional_variable_matrix$trend <- period    
     }
   }
+  data <- data.frame(period,(as.numeric(period) - dateX))
+  colnames(data)<-c("period","distance")
+  data$post<-0
+  data$post<-ifelse(data$distance>=0,1,0)
+  data$pre<-0
+  data$pre<-ifelse(data$distance<=-2,1,0)
+  data$unit<-ifelse(affected==1,"A","B")
+  data$metric<-metric
+  data$pretreat<-data$pre*affected
+  data$posttreat<-data$post*affected
   
-  pretrend <- (abs(time - 1))*affected
-  posttrend <- time*affected
-  notaffected <- abs(affected-1)
-  if(nrow(additional_variable_matrix)==1){
-    data<-data.frame(metric,pretrend,posttrend)
-  } else{
-    data<-data.frame(metric,pretrend,posttrend,as.data.frame(additional_variable_matrix))
+  
+  if(include_trend){
+    test_lm<-fixest::feols(metric~period+pretreat+posttreat|unit+period,data=data,cluster="unit")
+  }else{
+    test_lm<-fixest::feols(metric~pretreat+posttreat|unit+period,data=data,cluster="unit")
   }
   
-  data$pretrend[period==dateX-1]<-0
-  data$posttrend[period==dateX-1]<-0
-  test_lm<-lm(formula='metric~ .',data=data)
   
   ttest<-(summary(test_lm)$coefficients['pretrend','t value'])
   pvalue<-(summary(test_lm)$coefficients['pretrend','Pr(>|t|)'])

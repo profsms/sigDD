@@ -8,10 +8,8 @@ rg_simple_test(
   period,
   dateX,
   metric,
-  time,
   affected,
   alpha = 0.1,
-  additional_variable_matrix = matrix(nrow = 1, ncol = 1),
   include_trend = FALSE
 )
 }
@@ -24,17 +22,12 @@ for splitting the data into "pre-treatment" and "post-treatment" periods.}
 
 \item{metric}{Vector containing metric values of each observation}
 
-\item{time}{Boolean vector indicating whether an observation was taken pre-event or post-event - FALSE (or 0) if the observation was taken before the event took place, TRUE (or 1) if the observation was taken after the event took place.}
-
 \item{affected}{Boolean vector indicating whether an observation was to be affected by the event - FALSE (or 0) for control group, TRUE (or 1) for experimental (affected) group.}
 
 \item{alpha}{A numeric value (between 0 and 1) representing the significance 
 level for the test. Defaults to 0.1.}
 
-\item{additional_variable_matrix}{An optional matrix (default is a 1x1 
-empty matrix) allowing for inclusion of additional independent variables 
-in the test model. The number of rows must either be 1 (empty matrix) or 
-equal to the length of the `metric` vector.}
+\item{include_trend}{A Boolean variable that specifies whether trend should be added to the procedure's ols model, dafaults to FALSE}
 }
 \value{
 A data frame with two columns:

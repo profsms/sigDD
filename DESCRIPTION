@@ -9,6 +9,7 @@ Authors@R:
            comment = c(ORCID = "0009-0000-7344-7522"))
 Imports: 
     dplyr,
+    fixest,
     ggplot2,
     gt,
     tibble
