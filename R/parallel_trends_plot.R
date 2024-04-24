@@ -6,9 +6,9 @@
 #' @inheritParams DD_e
 #' @param period A vector of dates (or a number sequence) representing the period (f.e. day) when the observation was taken
 #' @param dateX An optional numeric value representing the time point for
-#' the vertical line. Defaults to the median of `time`.
-#' @param is_date A logical value (TRUE/FALSE) indicating if `time` is a date
-#' vector. If TRUE, `time` should be a character vector in a recognized date
+#' the vertical line. Defaults to the median of `period`.
+#' @param is_date A logical value (TRUE/FALSE) indicating if `period` is a date
+#' vector. If TRUE, `period` should be a character vector in a recognized date
 #' format. The starting date is assumed to be the first element.
 #' @param control_mod A numeric value to modify the metric for the control group.
 #' Defaults to 0 (no modification).
@@ -17,7 +17,7 @@
 #' @param equalize A logical value (TRUE/FALSE) indicating whether to equalize
 #' the mean metric values of the groups.
 #' @param unitize_period A logical value (TRUE/FALSE) indicating whether to unitize
-#' the time axis (scale to range 0-1).
+#' the period axis (scale to range 0-1).
 #' @param title The main title of the plot. Defaults to "Parallel Trend Plot".
 #' @param xlabel The label for the x-axis. Defaults to "Time".
 #' @param ylabel The label for the y-axis. Defaults to "Metric".
@@ -30,15 +30,15 @@
 #' @return A ggplot object representing the parallel trend plot.
 #'
 #' @export
-parallel_trends_plot <- function(metric, period, affected,dateX = ceiling(median(time)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_period = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '0', affected_name = '1'){
+parallel_trends_plot <- function(metric, period, affected,dateX = ceiling(median(period)),is_date = FALSE,control_mod = 0,affected_mod = 0,equalize = FALSE,unitize_period = FALSE,title = "Parallel Trend Plot",xlabel = "Time",ylabel = "Metric",control_series_color = "red",affected_series_color = "blue",legend_color_label = "Affected", control_name = '0', affected_name = '1'){
   
   # Check arguments
   if (!is.data.frame(data.frame(metric, period, affected))) {
-    stop("metric, time, and affected must be vectors of equal length")
+    stop("metric, period, and affected must be vectors of equal length")
   }
   
   if(!is.numeric(period) && is_date == FALSE){
-    stop("time must be a numeric vector, unless is_date is set to TRUE")
+    stop("period must be a numeric vector, unless is_date is set to TRUE")
   }
   
   if (!is.numeric(control_mod) | !is.numeric(affected_mod)) {
@@ -50,7 +50,7 @@ parallel_trends_plot <- function(metric, period, affected,dateX = ceiling(median
   }
   
   if (!is.logical(unitize_period)) {
-    stop("unitize_time must be logical (TRUE/FALSE) for time unitization")
+    stop("unitize_period must be logical (TRUE/FALSE) for time unitization")
   }
   
   if(is_date==TRUE){

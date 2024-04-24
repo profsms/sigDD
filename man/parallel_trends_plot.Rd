@@ -8,7 +8,7 @@ parallel_trends_plot(
   metric,
   period,
   affected,
-  dateX = ceiling(median(time)),
+  dateX = ceiling(median(period)),
   is_date = FALSE,
   control_mod = 0,
   affected_mod = 0,
@@ -32,10 +32,10 @@ parallel_trends_plot(
 \item{affected}{Boolean vector indicating whether an observation was to be affected by the event - FALSE (or 0) for control group, TRUE (or 1) for experimental (affected) group.}
 
 \item{dateX}{An optional numeric value representing the time point for
-the vertical line. Defaults to the median of `time`.}
+the vertical line. Defaults to the median of `period`.}
 
-\item{is_date}{A logical value (TRUE/FALSE) indicating if `time` is a date
-vector. If TRUE, `time` should be a character vector in a recognized date
+\item{is_date}{A logical value (TRUE/FALSE) indicating if `period` is a date
+vector. If TRUE, `period` should be a character vector in a recognized date
 format. The starting date is assumed to be the first element.}
 
 \item{control_mod}{A numeric value to modify the metric for the control group.
@@ -48,7 +48,7 @@ Defaults to 0 (no modification).}
 the mean metric values of the groups.}
 
 \item{unitize_period}{A logical value (TRUE/FALSE) indicating whether to unitize
-the time axis (scale to range 0-1).}
+the period axis (scale to range 0-1).}
 
 \item{title}{The main title of the plot. Defaults to "Parallel Trend Plot".}
 
