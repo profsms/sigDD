@@ -10,13 +10,17 @@
 #' @inheritParams DD_e
 #' @param alpha A numeric value (between 0 and 1) representing the significance 
 #' level for the test. Defaults to 0.1.
+#' @param additional_vars A data frame (optional) containing additional variables to be included in the regression model. 
+#' Columns of the data frame should correspond to numeric or factor variables in the main data used for the 
+#' analysis. Note that string variables are generally not suitable for direct 
+#' inclusion in regression models without appropriate transformation (e.g., factor conversion).
 #'
 #' @return A data frame with two columns:
 #'   - t test: The t-statistic value from the linear model.
 #'   - p-value: The p-value associated with the t-statistic.
 #'
 #' @export
-rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1){
+rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, additional_vars = NULL){
   
   
   data <- data.frame(period,(as.numeric(period) - dateX))
@@ -30,9 +34,36 @@ rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1){
   data$pretreat<-data$pre*affected
   data$posttreat<-data$post*affected
   
+  if (!is.null(additional_vars) && !is.data.frame(additional_vars)) {
+    stop("additional_vars argument must be a data frame")
+  }
   
+  if (!is.null(additional_vars) && nrow(additional_vars) != nrow(data)) {
+    stop("Number of rows in additional_vars must match the main data frame")
+  }
   
-  test_lm<-fixest::feols(metric~pretreat+posttreat|unit+period,data=data,cluster="unit")
+  data_mod<-data.frame(metric=data$metric,
+                       pretreat=data$pretreat,
+                       posttreat=data$posttreat,
+                       unit = data$unit,
+                       period = data$period)
+  
+  if (!is.null(additional_vars)){
+    data_mod <- cbind(data_mod, additional_vars)
+  }
+  
+  formula_string <- paste("metric ~ pretreat + posttreat", sep=" + ")
+  
+  if (!is.null(additional_vars)) {
+    for (var in names(additional_vars)) {
+      formula_string <- paste(formula_string, paste(var, sep = "+"), sep = "+")
+    }
+  }
+  
+  formula_string <- paste(formula_string, "|unit + period", sep = "")
+  formula_x <- as.formula(formula_string)
+  
+  test_lm<-fixest::feols(fml=formula_x,data=data_mod,cluster="unit")
   
   
   ttest<-(summary(test_lm)$coeftable['pretreat','t value'])

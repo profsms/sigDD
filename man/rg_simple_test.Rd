@@ -4,7 +4,14 @@
 \alias{rg_simple_test}
 \title{Perform a Simple Parallel Trend Test}
 \usage{
-rg_simple_test(period, dateX, metric, affected, alpha = 0.1)
+rg_simple_test(
+  period,
+  dateX,
+  metric,
+  affected,
+  alpha = 0.1,
+  additional_vars = NULL
+)
 }
 \arguments{
 \item{period}{A numeric vector representing the period (time point) for 
@@ -19,6 +26,11 @@ for splitting the data into "pre-treatment" and "post-treatment" periods.}
 
 \item{alpha}{A numeric value (between 0 and 1) representing the significance 
 level for the test. Defaults to 0.1.}
+
+\item{additional_vars}{A data frame (optional) containing additional variables to be included in the regression model. 
+Columns of the data frame should correspond to numeric or factor variables in the main data used for the 
+analysis. Note that string variables are generally not suitable for direct 
+inclusion in regression models without appropriate transformation (e.g., factor conversion).}
 }
 \value{
 A data frame with two columns:
