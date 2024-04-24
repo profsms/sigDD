@@ -39,8 +39,8 @@ rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, include_tren
   }
   
   
-  ttest<-(summary(test_lm)$coefficients['pretrend','t value'])
-  pvalue<-(summary(test_lm)$coefficients['pretrend','Pr(>|t|)'])
+  ttest<-(summary(test_lm)$coefficients['pre','t value'])
+  pvalue<-(summary(test_lm)$coefficients['pre','Pr(>|t|)'])
   results <-data.frame(ttest,pvalue)
   colnames(results)<-c('t test', 'p-value')
   if(results$'p-value' < alpha){
