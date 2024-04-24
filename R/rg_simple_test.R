@@ -10,14 +10,13 @@
 #' @inheritParams DD_e
 #' @param alpha A numeric value (between 0 and 1) representing the significance 
 #' level for the test. Defaults to 0.1.
-#' @param include_trend A Boolean variable that specifies whether trend should be added to the procedure's ols model, dafaults to FALSE
 #'
 #' @return A data frame with two columns:
 #'   - t test: The t-statistic value from the linear model.
 #'   - p-value: The p-value associated with the t-statistic.
 #'
 #' @export
-rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, include_trend=FALSE){
+rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1){
   
   
   data <- data.frame(period,(as.numeric(period) - dateX))
@@ -32,15 +31,12 @@ rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, include_tren
   data$posttreat<-data$post*affected
   
   
-  if(include_trend){
-    test_lm<-fixest::feols(metric~period+pretreat+posttreat|unit+period,data=data,cluster="unit")
-  }else{
-    test_lm<-fixest::feols(metric~pretreat+posttreat|unit+period,data=data,cluster="unit")
-  }
+  
+  test_lm<-fixest::feols(metric~pretreat+posttreat|unit+period,data=data,cluster="unit")
   
   
-  ttest<-(summary(test_lm)$coefficients['pretreat','t value'])
-  pvalue<-(summary(test_lm)$coefficients['pretreat','Pr(>|t|)'])
+  ttest<-(summary(test_lm)$coeftable['pretreat','t value'])
+  pvalue<-(summary(test_lm)$coeftable['pretreat','Pr(>|t|)'])
   results <-data.frame(ttest,pvalue)
   colnames(results)<-c('t test', 'p-value')
   if(results$'p-value' < alpha){
