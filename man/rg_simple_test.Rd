@@ -10,6 +10,7 @@ rg_simple_test(
   metric,
   affected,
   alpha = 0.1,
+  ex_t = -1,
   additional_vars = NULL
 )
 }
@@ -26,6 +27,8 @@ for splitting the data into "pre-treatment" and "post-treatment" periods.}
 
 \item{alpha}{A numeric value (between 0 and 1) representing the significance 
 level for the test. Defaults to 0.1.}
+
+\item{ex_t}{A numeric value less than 0, representing the earliest period excluded for testing purposes, where 0 is the moment of the event}
 
 \item{additional_vars}{A data frame (optional) containing additional variables to be included in the regression model. 
 Columns of the data frame should correspond to numeric or factor variables in the main data used for the 

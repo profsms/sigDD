@@ -10,6 +10,7 @@
 #' @inheritParams DD_e
 #' @param alpha A numeric value (between 0 and 1) representing the significance 
 #' level for the test. Defaults to 0.1.
+#' @param ex_t A numeric value less than 0, representing the earliest period excluded for testing purposes, where 0 is the moment of the event
 #' @param additional_vars A data frame (optional) containing additional variables to be included in the regression model. 
 #' Columns of the data frame should correspond to numeric or factor variables in the main data used for the 
 #' analysis. Note that string variables are generally not suitable for direct 
@@ -20,7 +21,7 @@
 #'   - p-value: The p-value associated with the t-statistic.
 #'
 #' @export
-rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, additional_vars = NULL){
+rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, ex_t = -1, additional_vars = NULL){
   
   
   data <- data.frame(period,(as.numeric(period) - dateX))
@@ -28,7 +29,7 @@ rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, additional_v
   data$post<-0
   data$post<-ifelse(data$distance>=0,1,0)
   data$pre<-0
-  data$pre<-ifelse(data$distance<=-2,1,0)
+  data$pre<-ifelse(data$distance<=ex_t-1,1,0)
   data$unit<-ifelse(affected==1,"A","B")
   data$metric<-metric
   data$pretreat<-data$pre*affected
