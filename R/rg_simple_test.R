@@ -20,14 +20,6 @@
 rg_simple_test<- function(period,dateX,metric,affected,alpha = 0.1, include_trend=FALSE){
   
   
-  if(include_trend){
-    if(nrow(additional_variable_matrix)==1){
-      additional_variable_matrix<-data.frame(period)
-    }else{
-      additional_variable_matrix<-as.data.frame(additional_variable_matrix)
-      additional_variable_matrix$trend <- period    
-    }
-  }
   data <- data.frame(period,(as.numeric(period) - dateX))
   colnames(data)<-c("period","distance")
   data$post<-0
