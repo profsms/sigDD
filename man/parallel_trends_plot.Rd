@@ -47,6 +47,9 @@ Defaults to 0 (no modification).}
 \item{equalize}{A logical value (TRUE/FALSE) indicating whether to equalize
 the mean metric values of the groups.}
 
+\item{unitize_period}{A logical value (TRUE/FALSE) indicating whether to unitize
+the time axis (scale to range 0-1).}
+
 \item{title}{The main title of the plot. Defaults to "Parallel Trend Plot".}
 
 \item{xlabel}{The label for the x-axis. Defaults to "Time".}
@@ -62,9 +65,6 @@ the mean metric values of the groups.}
 \item{control_name}{The name for the control group, '0' by default}
 
 \item{affected_name}{The name for the affected group, '1' by default}
-
-\item{unitize_time}{A logical value (TRUE/FALSE) indicating whether to unitize
-the time axis (scale to range 0-1).}
 }
 \value{
 A ggplot object representing the parallel trend plot.

@@ -16,7 +16,7 @@
 #' Defaults to 0 (no modification).
 #' @param equalize A logical value (TRUE/FALSE) indicating whether to equalize
 #' the mean metric values of the groups.
-#' @param unitize_time A logical value (TRUE/FALSE) indicating whether to unitize
+#' @param unitize_period A logical value (TRUE/FALSE) indicating whether to unitize
 #' the time axis (scale to range 0-1).
 #' @param title The main title of the plot. Defaults to "Parallel Trend Plot".
 #' @param xlabel The label for the x-axis. Defaults to "Time".
@@ -49,7 +49,7 @@ parallel_trends_plot <- function(metric, period, affected,dateX = ceiling(median
     stop("equalize must be logical (TRUE/FALSE) for group alignment")
   }
   
-  if (!is.logical(unitize_time)) {
+  if (!is.logical(unitize_period)) {
     stop("unitize_time must be logical (TRUE/FALSE) for time unitization")
   }
   
